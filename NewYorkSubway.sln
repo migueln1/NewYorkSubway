@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYorkSubway", "NewYorkSub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYorkSubway.Application", "NewYorkSubway.Application\NewYorkSubway.Application.csproj", "{3D727C41-34DD-4C9C-8086-45820DCCD937}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYorkSubway.Core", "NewYorkSubway.Core\NewYorkSubway.Core.csproj", "{C78C736C-7F52-4358-904D-C24A2A8AEF70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYorkSubway.Infrastructure", "NewYorkSubway.Infrastructure\NewYorkSubway.Infrastructure.csproj", "{E003D16D-68DB-4989-9F09-EA1896817E64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3D727C41-34DD-4C9C-8086-45820DCCD937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D727C41-34DD-4C9C-8086-45820DCCD937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D727C41-34DD-4C9C-8086-45820DCCD937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C78C736C-7F52-4358-904D-C24A2A8AEF70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78C736C-7F52-4358-904D-C24A2A8AEF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78C736C-7F52-4358-904D-C24A2A8AEF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78C736C-7F52-4358-904D-C24A2A8AEF70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E003D16D-68DB-4989-9F09-EA1896817E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E003D16D-68DB-4989-9F09-EA1896817E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E003D16D-68DB-4989-9F09-EA1896817E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E003D16D-68DB-4989-9F09-EA1896817E64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

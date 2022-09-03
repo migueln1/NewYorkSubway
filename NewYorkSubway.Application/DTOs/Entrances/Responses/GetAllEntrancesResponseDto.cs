@@ -1,6 +1,6 @@
 ﻿namespace NewYorkSubway.Application.DTOs
 {
-    public class GetEntranceResponseDto
+    public class GetAllEntrancesResponseDto
     {
         public List<EntranceDto> Entrances { get; set; }
     }

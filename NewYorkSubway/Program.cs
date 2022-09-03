@@ -1,48 +1,38 @@
 global using FastEndpoints;
+using FastEndpoints.Swagger; 
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using MediatR;
+using NewYorkSubway.Application;
+using NewYorkSubway.Infrastructure;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddFastEndpoints();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDoc();
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(cb =>
+    {
+        cb.RegisterModule(new ApplicationModule());
+        cb.RegisterModule(new InfrastructureModule(builder.Configuration));
+    });
 
 var app = builder.Build();
 
+app.UseAuthorization();
+app.UseFastEndpoints(c =>
+{
+    c.Endpoints.RoutePrefix = "api";
+});
+//app.UseHttpsRedirection();
+app.UseOpenApi();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUi3(s => s.ConfigureDefaults());
 }
 
-app.UseAuthorization();
-app.UseFastEndpoints();
-app.UseHttpsRedirection();
-
-
-
-
-//var summaries = new[]
-//{
-//    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-//};
-
-//app.MapGet("/weatherforecast", () =>
-//{
-//    var forecast = Enumerable.Range(1, 5).Select(index =>
-//        new WeatherForecast
-//        (
-//            DateTime.Now.AddDays(index),
-//            Random.Shared.Next(-20, 55),
-//            summaries[Random.Shared.Next(summaries.Length)]
-//        ))
-//        .ToArray();
-//    return forecast;
-//})
-//.WithName("GetWeatherForecast");
 
 app.Run();
-
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
