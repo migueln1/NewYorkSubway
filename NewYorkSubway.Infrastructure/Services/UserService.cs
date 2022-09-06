@@ -2,6 +2,7 @@
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Amazon.Extensions.CognitoAuthentication;
+using Microsoft.Extensions.Configuration;
 using NewYorkSubway.Common.Models;
 using NewYorkSubway.Core.Abstractions;
 using NewYorkSubway.Core.Models;
@@ -10,22 +11,20 @@ namespace NewYorkSubway.Infrastructure.Services
 {
     public class UserService : IUserService
     {
-
+        private readonly IConfiguration _config;
         private readonly CognitoUserPool _pool;
         private readonly AmazonCognitoIdentityProviderClient _provider;
-        public UserService()
+        public UserService(IConfiguration config)
         {
-            //TODO use secrets
-
-            _provider = new("AKIA5UZ6FB7A77Q3BVPS", "DYRK2gDm8Qmx5N4LlDa4DLl1lQSzYNHHt/C/FEVX", RegionEndpoint.GetBySystemName("us-east-1"));
-            _pool = new("us-east-1_8pXaKoy2L", "1bnv9lucgnkct5rbikr0rb3lu5", _provider);
+            _config = config;
+            _provider = new(_config["AWS:AccessKeyId"], _config["AWS:SecretAccessKeyId"], RegionEndpoint.GetBySystemName(_config["AWS:Region"]));
+            _pool = new(_config["AWS:PoolId"], _config["AWS:AppClientId"], _provider);
         }
         public async Task<AuthResponseModel> TryLoginAsync(AuthModel model, CancellationToken ct)
         {
             try
             {
-                //TODO Use secrets
-                CognitoUser user = new(model.Username, "1bnv9lucgnkct5rbikr0rb3lu5", _pool, _provider);
+                CognitoUser user = new(model.Username, _config["AWS:AppClientId"], _pool, _provider);
                 InitiateSrpAuthRequest authRequest = new()
                 {
                     Password = model.Password
