@@ -2,8 +2,9 @@
 {
     public class EntranceDto
     {
+        public int EntranceId { get; set; }
         public string Name { get; init; } = "No name";
-        public decimal Latitude { get; init; }
-        public decimal Longitude { get; init; }
+        public double? Latitude { get; init; }
+        public double? Longitude { get; init; }
     }
 }

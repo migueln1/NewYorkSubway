@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace NewYorkSubway.Infrastructure.Repositories;
+namespace NewYorkSubway.Core.Abstractions;
 public interface IRepositoryBase<T>
 {
     IQueryable<T> GetAll();

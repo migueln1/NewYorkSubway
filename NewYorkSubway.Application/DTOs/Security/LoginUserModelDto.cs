@@ -1,6 +1,6 @@
 ﻿namespace NewYorkSubway.Application.DTOs
 {
-    public class SignUpUserModelDto
+    public class LoginUserModelDto
     {
         public string EmailAddress { get; set; }
         public string Password { get; set; }

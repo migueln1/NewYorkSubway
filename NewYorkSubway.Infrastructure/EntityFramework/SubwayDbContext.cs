@@ -7,7 +7,7 @@ namespace NewYorkSubway.Infrastructure.EntityFramework
     {
         public SubwayDbContext() {}
         public SubwayDbContext(DbContextOptions<SubwayDbContext> options) : base(options) {}
-        public virtual DbSet<Entrance> Entrances { get; set; }
+        public virtual DbSet<UserEntrance> UserEntrances { get; set; }
 
     }
 }

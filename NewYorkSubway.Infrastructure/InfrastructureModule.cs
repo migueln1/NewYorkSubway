@@ -25,6 +25,10 @@ namespace NewYorkSubway.Infrastructure
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces();
         }
     }
 }

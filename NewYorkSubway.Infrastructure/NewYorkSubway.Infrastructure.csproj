@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\SubwayEntrances.geojson" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\SubwayEntrances.geojson">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.2.2" />
     <PackageReference Include="Autofac" Version="6.4.0" />
     <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.7.5.12" />
