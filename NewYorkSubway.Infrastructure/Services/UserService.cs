@@ -14,12 +14,14 @@ namespace NewYorkSubway.Infrastructure.Services
         private readonly IConfiguration _config;
         private readonly CognitoUserPool _pool;
         private readonly AmazonCognitoIdentityProviderClient _provider;
+
         public UserService(IConfiguration config)
         {
             _config = config;
             _provider = new(_config["AWS:AccessKeyId"], _config["AWS:SecretAccessKeyId"], RegionEndpoint.GetBySystemName(_config["AWS:Region"]));
             _pool = new(_config["AWS:PoolId"], _config["AWS:AppClientId"], _provider);
         }
+
         public async Task<AuthResponseModel> TryLoginAsync(AuthModel model, CancellationToken ct)
         {
             try
@@ -68,8 +70,6 @@ namespace NewYorkSubway.Infrastructure.Services
                     Message = "Not authorized action"
                 };
             }
-
         }
-
     }
 }

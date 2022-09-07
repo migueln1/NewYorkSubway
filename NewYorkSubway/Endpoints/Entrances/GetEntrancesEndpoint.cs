@@ -4,11 +4,11 @@ using NewYorkSubway.Application.Handlers.Queries.Entrances;
 
 namespace NewYorkSubway.Endpoints
 {
-    public class EntrancesEndpoint : EndpointWithoutRequest<GetAllEntrancesResponseDto>
+    public class GetEntrancesEndpoint : EndpointWithoutRequest<GetAllEntrancesResponseDto>
     {
         private readonly IMediator _mediator;
 
-        public EntrancesEndpoint(IMediator mediator)
+        public GetEntrancesEndpoint(IMediator mediator)
         {
             _mediator = mediator;
         }

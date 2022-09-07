@@ -2,6 +2,6 @@
 {
     public class GetAllEntrancesResponseDto
     {
-        public List<EntranceDto> Entrances { get; set; }
+        public List<EntranceDto>? Entrances { get; set; }
     }
 }

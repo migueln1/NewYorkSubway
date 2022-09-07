@@ -15,14 +15,13 @@ namespace NewYorkSubway.Endpoints
 
         public override void Configure()
         {
-            Put("entrances/{entranceId}");
+            Post("entrances/{EntranceId}/user/{Username}");
         }
 
         public override async Task HandleAsync(UseEntranceDto request, CancellationToken ct)
         {
             var resp = await _mediator.Send(new UserEntranceCommand() { EntranceId = request.EntranceId, Username = request.Username }, ct);
-            await SendAsync(resp);
-
+            await SendAsync(resp, cancellation: ct);
         }
     }
 }

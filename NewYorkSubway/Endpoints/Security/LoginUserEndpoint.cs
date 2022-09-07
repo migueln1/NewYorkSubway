@@ -19,7 +19,7 @@ namespace NewYorkSubway.Endpoints.Security
         }
         public override async Task HandleAsync(LoginUserModelDto req, CancellationToken ct)
         {
-            var resp = await _mediator.Send(new LoginUserCommand() { Username = req.EmailAddress, Password = req.Password }, ct);
+            var resp = await _mediator.Send(new LoginUserCommand() { Username = req.Username, Password = req.Password }, ct);
             await SendAsync(resp);
         }
     }

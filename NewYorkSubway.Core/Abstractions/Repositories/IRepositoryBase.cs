@@ -3,7 +3,7 @@
 namespace NewYorkSubway.Core.Abstractions;
 public interface IRepositoryBase<T>
 {
-    IQueryable<T> GetAll();
+    Task<List<T>> TryGetAllAsync();
     IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression);
 }
 

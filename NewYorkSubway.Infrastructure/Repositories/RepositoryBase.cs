@@ -14,7 +14,7 @@ namespace NewYorkSubway.Infrastructure.Repositories
             SubwayContext = context;
         }
 
-        public IQueryable<T> GetAll() => SubwayContext.Set<T>().AsNoTracking();
+        public Task<List<T>> TryGetAllAsync() => SubwayContext.Set<T>().AsNoTracking().ToListAsync();
 
         public IQueryable<T> GetByCondition(Expression<Func<T, bool>> expression) =>
             SubwayContext.Set<T>().Where(expression);

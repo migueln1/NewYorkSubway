@@ -7,6 +7,8 @@
         }
 
         public int EntranceId { get; init; }
-        public int Count { get; init; }
+        public string? Username { get; init; }
+        public Guid Id { get; init; }
+        public string? EntranceName { get; init; }
     }
 }
