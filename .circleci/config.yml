@@ -1,14 +1,27 @@
 version: 2.1
 orbs:
+  aws-cli: circleci/aws-cli@2.0.3
   aws-ecr: circleci/aws-ecr@8.1.2
-version: '2.1'
-orbs:
-  aws-ecr: circleci/aws-ecr@x.y
 workflows:
   build_and_push_image:
     jobs:
       - aws-ecr/build-and-push-image:
-          
+          aws-access-key-id: AWS_ACCESS_KEY_ID 
+          aws-cli-version: latest
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY 
           context: dev
+          create-repo: false
+          dockerfile: Dockerfile
+          executor: aws-ecr/default
+          extra-build-args: '--compress'
+          new-profile-name: ecr-pusher
+          no-output-timeout: 20m
+          path: ../NewYorkSubway
+          platform: linux/amd64
+          profile-name: ecr-pusher
+          push-image: true
+          registry-id: AWS_ECR_REGISTRY_ID
           public-registry: true
+          region: AWS_REGION
           repo: subway-entrances-api
+          tag: 'latest,myECRRepoTag'
