@@ -1,0 +1,14 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@8.1.2
+version: '2.1'
+orbs:
+  aws-ecr: circleci/aws-ecr@x.y
+workflows:
+  build_and_push_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          
+          context: dev
+          public-registry: true
+          repo: subway-entrances-api
