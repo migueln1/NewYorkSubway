@@ -18,15 +18,15 @@ namespace NewYorkSubway.Infrastructure.Services
         public UserService(IConfiguration config)
         {
             _config = config;
-            _provider = new(_config["AWS:AccessKeyId"], _config["AWS:SecretAccessKeyId"], RegionEndpoint.GetBySystemName(_config["AWS:Region"]));
-            _pool = new(_config["AWS:PoolId"], _config["AWS:AppClientId"], _provider);
+            _provider = new(_config["aws-access-key-id"], _config["aws-secret-access-key-id"], RegionEndpoint.GetBySystemName(_config["aws-region"]));
+            _pool = new(_config["aws-pool-id"], _config["aws-app-client-id"], _provider);
         }
 
         public async Task<AuthResponseModel> TryLoginAsync(AuthModel model, CancellationToken ct)
         {
             try
             {
-                CognitoUser user = new(model.Username, _config["AWS:AppClientId"], _pool, _provider);
+                CognitoUser user = new(model.Username, _config["aws-app-client-id"], _pool, _provider);
                 InitiateSrpAuthRequest authRequest = new()
                 {
                     Password = model.Password

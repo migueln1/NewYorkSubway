@@ -27,16 +27,12 @@ builder.Services.AddAuthentication(o =>
 });
 builder.Services.AddSwaggerDoc();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-var connectionString = builder.Configuration.GetConnectionString("AppConfig");
 builder.Host
-    .ConfigureAppConfiguration(b => {
-        b.AddAzureAppConfiguration(connectionString);
-    })
     .UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(cb =>
     {
         cb.RegisterModule(new ApplicationModule());
-        cb.RegisterModule(new InfrastructureModule(builder.Configuration["AWS:RDSConnectionString"]));
+        cb.RegisterModule(new InfrastructureModule(builder.Configuration["aws-rds-connection-string"]));
     });
 
 var app = builder.Build();
