@@ -4,7 +4,7 @@ Description=New York Subway entrances
 [Service]
 WorkingDirectory=/var/www/
 ExecStart=/usr/bin/dotnet /var/www/NewYorkSubway.dll
-Restart =always
+Restart=always
 RestartSec=10
 KillSignal=SIGINT
 SyslogIdentifier=webapi
