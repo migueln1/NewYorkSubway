@@ -25,13 +25,12 @@ builder.Services.AddAuthentication(o =>
         ValidateAudience = false
     };
 });
-var connectionString = builder.Configuration.GetConnectionString("AppConfig");
 builder.Services.AddSwaggerDoc();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+var connectionString = builder.Configuration.GetConnectionString("AppConfig");
 builder.Host
-    .ConfigureAppConfiguration(builder =>
-    {
-        builder.AddAzureAppConfiguration(connectionString);
+    .ConfigureAppConfiguration(b => {
+        b.AddAzureAppConfiguration(connectionString);
     })
     .UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(cb =>

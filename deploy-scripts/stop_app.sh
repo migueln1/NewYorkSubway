@@ -1,1 +1,0 @@
-systectl stop webapi.service
