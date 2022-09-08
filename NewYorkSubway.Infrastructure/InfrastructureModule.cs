@@ -7,18 +7,18 @@ namespace NewYorkSubway.Infrastructure
 {
     public class InfrastructureModule : Module
     {
-        private readonly IConfiguration _config;
+        private readonly string _connectionString;
 
-        public InfrastructureModule(IConfiguration configuration)
+        public InfrastructureModule(string connectionString)
         {
-            _config = configuration;
+            _connectionString = connectionString;
         }
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(x =>
             {
                 var optionsBuilder = new DbContextOptionsBuilder<SubwayDbContext>();
-                optionsBuilder.UseNpgsql(_config["AWS:RDSConnectionString"]);
+                optionsBuilder.UseNpgsql(_connectionString);
                 return new SubwayDbContext(optionsBuilder.Options);
             }).InstancePerLifetimeScope();
 

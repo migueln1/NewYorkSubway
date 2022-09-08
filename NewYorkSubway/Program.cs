@@ -25,14 +25,19 @@ builder.Services.AddAuthentication(o =>
         ValidateAudience = false
     };
 });
-
+var connectionString = builder.Configuration.GetConnectionString("AppConfig");
 builder.Services.AddSwaggerDoc();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+builder.Host
+    .ConfigureAppConfiguration(builder =>
+    {
+        builder.AddAzureAppConfiguration(connectionString);
+    })
+    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(cb =>
     {
         cb.RegisterModule(new ApplicationModule());
-        cb.RegisterModule(new InfrastructureModule(builder.Configuration));
+        cb.RegisterModule(new InfrastructureModule(builder.Configuration["AWS:RDSConnectionString"]));
     });
 
 var app = builder.Build();
