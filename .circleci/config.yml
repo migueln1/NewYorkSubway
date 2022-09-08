@@ -15,7 +15,6 @@ workflows:
           extra-build-args: '--compress'
           new-profile-name: ecr-pusher
           no-output-timeout: 20m
-          path: NewYorkSubway
           platform: linux/amd64
           profile-name: ecr-pusher
           push-image: true
