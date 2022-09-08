@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewYorkSubway.Core", "NewYo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewYorkSubway.Infrastructure", "NewYorkSubway.Infrastructure\NewYorkSubway.Infrastructure.csproj", "{E003D16D-68DB-4989-9F09-EA1896817E64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYorkSubway.Common", "NewYorkSubway.Common\NewYorkSubway.Common.csproj", "{1B6C6E3A-509B-47DF-A12A-195828BB0177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewYorkSubway.Common", "NewYorkSubway.Common\NewYorkSubway.Common.csproj", "{1B6C6E3A-509B-47DF-A12A-195828BB0177}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3EEA67CB-0DF8-483F-B2CD-44CEB8F043BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{433A3D23-CCDD-4302-AFE1-64A4F9B200FF} = {3EEA67CB-0DF8-483F-B2CD-44CEB8F043BA}
+		{3D727C41-34DD-4C9C-8086-45820DCCD937} = {3EEA67CB-0DF8-483F-B2CD-44CEB8F043BA}
+		{C78C736C-7F52-4358-904D-C24A2A8AEF70} = {3EEA67CB-0DF8-483F-B2CD-44CEB8F043BA}
+		{E003D16D-68DB-4989-9F09-EA1896817E64} = {3EEA67CB-0DF8-483F-B2CD-44CEB8F043BA}
+		{1B6C6E3A-509B-47DF-A12A-195828BB0177} = {3EEA67CB-0DF8-483F-B2CD-44CEB8F043BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6CF7A172-0C68-4FCE-9289-C2F405C15BAD}
