@@ -8,8 +8,23 @@ using NewYorkSubway.Infrastructure;
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using NewYorkSubway.Common;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var cnn = builder.Configuration.GetConnectionString("RdsConnection");
+var appcnn = builder.Configuration.GetConnectionString("AppConfig");
+builder.Host
+    .ConfigureAppConfiguration(builder =>
+    {
+        builder.AddAzureAppConfiguration(appcnn, false);
+    })
+    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(cb =>
+    {
+        cb.RegisterModule(new ApplicationModule());
+        cb.RegisterModule(new InfrastructureModule(builder.Configuration));
+    });
 
 builder.Services.AddFastEndpoints();
 builder.Services.AddAuthentication(o =>
@@ -27,15 +42,14 @@ builder.Services.AddAuthentication(o =>
 });
 builder.Services.AddSwaggerDoc();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-builder.Host
-    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-    .ConfigureContainer<ContainerBuilder>(cb =>
-    {
-        cb.RegisterModule(new ApplicationModule());
-        cb.RegisterModule(new InfrastructureModule(builder.Configuration["aws-rds-connection-string"]));
-    });
+
 
 var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+}
 
 app.UseAuthentication();
 app.UseAuthorization();

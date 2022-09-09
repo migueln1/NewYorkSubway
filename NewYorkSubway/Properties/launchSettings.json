@@ -33,11 +33,11 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
         "aws-access-key-id": "AKIA5UZ6FB7A77Q3BVPS",
-        "aws-rds-connection-string": "Host=newyorksubway.ccx5qgwrocyr.us-east-1.rds.amazonaws.com;Port=5432;Username=postgres;Password=o5eX24rQ$;Database=NewYorkSubwayDB;",
         "aws-secret-access-key-id": "DYRK2gDm8Qmx5N4LlDa4DLl1lQSzYNHHt/C/FEVX",
         "aws-app-client-id": "1bnv9lucgnkct5rbikr0rb3lu5",
         "aws-pool-id": "us-east-1_8pXaKoy2L",
-        "aws-region": "us-east-1"
+        "aws-region": "us-east-1",
+        "AwsRdsConnectionString": "Host=newyorksubway.ccx5qgwrocyr.us-east-1.rds.amazonaws.com;Port=5432;Username=postgres;Password=o5eX24rQ$;Database=NewYorkSubwayDB;"
       },
       "publishAllPorts": true,
       "useSSL": true
