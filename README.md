@@ -12,7 +12,7 @@ FastEndpoints
 MediatR
 EF Core
 ~~ Docker ~~
-
+```
 
 Main solution is splitted into different projects to follow clean architecture best practices. 
 Local swagger integration for easy API utilization.
