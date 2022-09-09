@@ -28,6 +28,9 @@ The application and user management were deployed using Amazon and Azure Cloud S
 
 - Setting the RDS Connection String as a local secret is required for local solution deployment. More information on Dotnet User Secrets is available at [Safe storage of app secrets in development in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows)
 
+###### Important
+- Allowing inbound IP addresses is required to access the RDS instance for security reasons. You can contact me to enable all connections, which are only required when the deployment is done locally.
+
 ## Issues to mention
 - Docker compatibility crashed, and I attempted to resolve the certificate-related issue on my machine, but it was impossible. I recommend that you use IIS for local deployment.
 - Azure App Configuration stopped working properly in the solution, so I had to store sensitive AWS information in the appsettings.json file (I know, bad practice, but I can't reconnect the service again).
