@@ -1,26 +1,24 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using NewYorkSubway.Core.Models;
 using NewYorkSubway.Infrastructure.EntityFramework;
 
 namespace NewYorkSubway.Infrastructure
 {
     public class InfrastructureModule : Module
     {
-        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
 
-        public InfrastructureModule(IConfiguration configuration)
+        public InfrastructureModule(string conn)
         {
-            _configuration = configuration;
+            _connectionString = conn;
         }
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(x =>
             {
                 var optionsBuilder = new DbContextOptionsBuilder<SubwayDbContext>();
-                optionsBuilder.UseNpgsql(_configuration.GetConnectionString("RdsConnection"));
+                optionsBuilder.UseNpgsql(_connectionString);
                 return new SubwayDbContext(optionsBuilder.Options);
             }).InstancePerLifetimeScope();
 

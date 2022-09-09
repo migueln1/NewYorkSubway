@@ -13,17 +13,12 @@ using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 var cnn = builder.Configuration.GetConnectionString("RdsConnection");
-var appcnn = builder.Configuration.GetConnectionString("AppConfig");
 builder.Host
-    .ConfigureAppConfiguration(builder =>
-    {
-        builder.AddAzureAppConfiguration(appcnn, false);
-    })
     .UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(cb =>
     {
         cb.RegisterModule(new ApplicationModule());
-        cb.RegisterModule(new InfrastructureModule(builder.Configuration));
+        cb.RegisterModule(new InfrastructureModule(cnn));
     });
 
 builder.Services.AddFastEndpoints();
